@@ -1,0 +1,29 @@
+version: '2'
+services:
+  nginx:
+    build:
+      context: ./
+      dockerfile: docker/nginx.docker
+    volumes:
+      - ./:/var/www
+    ports:
+      - "8888:80"
+    links:
+      - php-fpm
+    logging:
+      driver: none
+  php-fpm:
+    build:
+      context: ./
+      dockerfile: docker/php-fpm.docker
+    volumes:
+      - ./:/var/www
+    logging:
+      driver: none
+
+  compass:
+    build:
+      context: ./
+      dockerfile: compass.docker
+    volumes:
+      - ./:/var/www

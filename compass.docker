@@ -1,0 +1,10 @@
+FROM ruby:latest 
+
+WORKDIR /var/www
+
+RUN gem update --system \
+    && gem install compass
+
+COPY . .
+
+CMD ["compass", "watch"]
